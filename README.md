@@ -1,5 +1,6 @@
 # Usage:
-set how many months should be able to be selected in [customFlatPickr.js](https://github.com/philipphermes/DateTimePicker/blob/main/customFlatPickr.js) (monthAz)
+* set how many months should be able to be selected in [customFlatPickr.js](https://github.com/philipphermes/DateTimePicker/blob/main/customFlatPickr.js) (monthAz)
+* return value is: Y-m-d H:i
 ### Include these in your html file:
 #### header:
 ```html
