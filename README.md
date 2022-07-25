@@ -16,10 +16,10 @@
         <script src="https://unpkg.com/flatpickr@4.6.9/dist/plugins/minMaxTimePlugin.js"></script>
         <script src="customFlatPickr.js"></script>
       ```
-  * form requires this imput:
+  * form requires this input:
     * ```html
         <input type="datetime-local">
       ```
-  * dependencys:
+  * dependencies:
     * [flatpickt](https://flatpickr.js.org/)
     * [feiertage Api](https://ipty.de/feiertag/)
