@@ -21,5 +21,5 @@ set how many months should be able to be selected in [customFlatPickr](https://g
   <input type="datetime-local">
 ```
 ### Dependencies:
-  * [flatpickt](https://flatpickr.js.org/)
+  * [flatpickr](https://flatpickr.js.org/)
   * [feiertage Api](https://ipty.de/feiertag/)
