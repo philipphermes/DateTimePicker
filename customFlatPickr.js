@@ -1,4 +1,4 @@
-const monthAz = 7;
+const monthAz = 5;
 
 const startDate = new Date();
 let month = startDate.getMonth();
@@ -9,13 +9,15 @@ const endDate = new Date(year, month + monthAz, 0);
 const currentDateAsString = year + "-" + (month + 1) + "-" + startDate.getDate();
 const endDateAsString = endDate.getFullYear() + "-" + (endDate.getMonth() + 1) + "-" + endDate.getDate();
 
-console.log("Start Date: " + currentDateAsString)
-console.log("End Date: " + endDateAsString)
+let feiertageList = [];
+getFeiertage(year);
+
+if (year !== endDate.getFullYear()) {
+    getFeiertage(endDate.getFullYear());
+}
 
 const saturdays = getSaturdays(month, year, monthAz);
 createFlatPickr(currentDateAsString, endDateAsString, saturdays);
-
-console.log(saturdays)
 
 function createFlatPickr(currentDateAsString, endDateAsString, saturdays) {
     const config = {
@@ -30,7 +32,12 @@ function createFlatPickr(currentDateAsString, endDateAsString, saturdays) {
         minuteIncrement: 30,
         "disable": [
             function (date) {
-                return date.getDay() === 0;
+                let month = getFormattedMonth(date);
+                let day = getFormattedDay(date);
+
+                const currentDate = date.getFullYear() + "-" + month + "-" + day;
+
+                return date.getDay() === 0 || feiertageList.includes(currentDate);
             }
         ],
         "locale": {
@@ -62,20 +69,8 @@ function getSaturdays(month, year, monthAz) {
         for (var i = 1; i <= daysInMonth; i++) {
             var newDate = new Date(year, month, i)
             if (newDate.getDay() === 6) {
-                let month = "0";
-                let day = "0";
-
-                if (newDate.getMonth() + 1 < 10) {
-                    month += (newDate.getMonth() + 1);
-                } else {
-                    month = (newDate.getMonth() + 1);
-                }
-
-                if (newDate.getDate() < 10) {
-                    day += newDate.getDate();
-                } else {
-                    day = newDate.getDate();
-                }
+                let month = getFormattedMonth(newDate);
+                let day = getFormattedDay(newDate);
 
                 const dateAsString = newDate.getFullYear() + "-" + month + "-" + day;
 
@@ -87,4 +82,43 @@ function getSaturdays(month, year, monthAz) {
     }
 
     return saturdays;
+}
+
+async function getFeiertage(year) {
+    const url = "https://ipty.de/feiertag/api.php?do=getFeiertage&loc=NW&outformat=Y-m-d&jahr=" + year;
+
+    let feiertage = await getJsonResponse(url);
+
+    feiertage.forEach(feiertag => {
+        feiertageList.push(feiertag.date)
+    })
+}
+
+async function getJsonResponse(url) {
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function getFormattedDay(date) {
+    let day = "0";
+
+    if (date.getDate() < 10) {
+        return day + date.getDate();
+    }
+
+    return date.getDate();
+}
+
+function getFormattedMonth(date) {
+    let month = "0";
+
+    if (date.getMonth() + 1 < 10) {
+        return month + (date.getMonth() + 1);
+    }
+
+    return (date.getMonth() + 1);
 }
