@@ -6,9 +6,9 @@ set how many months should be able to be selected in [customFlatPickr.js](https:
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   ```
 #### Themes:
-* ```html
+```html
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-  ```
+ ```
 * more styles can be found [here](https://flatpickr.js.org/themes/)
 #### Bottom of body:
 ```html
