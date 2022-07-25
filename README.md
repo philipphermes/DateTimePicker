@@ -23,6 +23,3 @@ Themes:
 ### Dependencies:
   * [flatpickt](https://flatpickr.js.org/)
   * [feiertage Api](https://ipty.de/feiertag/)
-
-### Preview
-click this [link](https://htmlpreview.github.io/?https://github.com/philipphermes/DateTimePicker/blob/main/index.html) to preview. MonthAz set to 3
