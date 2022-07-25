@@ -56,7 +56,7 @@ function createFlatPickr(currentDateAsString, endDateAsString, saturdays) {
 function getSaturdays(month, year, monthAz) {
     let saturdays = {table: {}};
 
-    for (var a = 0; a < monthAz; a++) {
+    for (let a = 0; a < monthAz; a++) {
         if (month > 10) {
             month = 0;
             year += 1;
@@ -66,8 +66,8 @@ function getSaturdays(month, year, monthAz) {
 
         let daysInMonth = new Date(year, month, 0).getDate() + 1; //+1 fixed bug in december 31, i dont know why
 
-        for (var i = 1; i <= daysInMonth; i++) {
-            var newDate = new Date(year, month, i)
+        for (let i = 1; i <= daysInMonth; i++) {
+            let newDate = new Date(year, month, i)
             if (newDate.getDay() === 6) {
                 let month = getFormattedMonth(newDate);
                 let day = getFormattedDay(newDate);
